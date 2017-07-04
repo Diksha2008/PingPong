@@ -3,8 +3,8 @@ var paddle1 = document.getElementById("paddle1");
 var paddle2 = document.getElementById("paddle2");
 var score = document.getElementById("score");
 
-var dx = 2;
-var dy = 2;
+var dx = 4;
+var dy = 4;
 
 var maxWidth = document.body.clientWidth;
 var maxHeight = document.body.clientHeight;
@@ -63,6 +63,14 @@ function move() {
 
 	//collision with wall
 	if(currentX < 0 || currentX > maxWidth - ballRadius){
+		if(currentX < 0 ){
+			score2 ++;
+			dx = -dx;
+		}
+		if(currentX > maxWidth - ballRadius){
+			score1 ++;
+			dx = -dx;
+		}
 		//if score of player1 is 10 and difference betwwen theirs scores is greate than 1 otherwise continue the game.
 		if (score1 >= 2 && score1 - score2 > 1) {
 			alert("Player1 wins!!!\n Player1: " + score1 + "pts   Player2: " + score2 + "pts");
@@ -72,14 +80,6 @@ function move() {
 			alert("Player2 wins!!!\n Player1: " + score1 + "pts   Player2: " + score2 + "pts");
 			document.location.reload();
 		}	
-		if(currentX < 0 ){
-			score2 ++;
-			dx = -dx;
-		}
-		if(currentX > maxWidth - ballRadius){
-			score1 ++;
-			dx = -dx;
-		}
 		// alert("Game Over");
 		// document.location.reload();
 	}
